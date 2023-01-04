@@ -86,6 +86,9 @@ const styles = StyleSheet.create({
 
   btnWrapper: {
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   lstGuessesContainer: {

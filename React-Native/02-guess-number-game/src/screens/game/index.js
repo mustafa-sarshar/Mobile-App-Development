@@ -46,7 +46,11 @@ const GameScreen = (props) => {
   };
 
   const changeNumberHandler = (num) => {
-    setGuessedNumber(num.trim());
+    if (num.length !== 0) {
+      setGuessedNumber(`${parseInt(num.trim())}`);
+    } else {
+      setGuessedNumber(`${num.trim()}`);
+    }
   };
 
   const validateRange = (num) => {
@@ -120,14 +124,6 @@ const GameScreen = (props) => {
             <Text style={styles.lblTitle__numbers}>{userLowerRange}</Text> and{" "}
             <Text style={styles.lblTitle__numbers}>{userUpperRange}</Text>
           </Text>
-          <PrimaryButton
-            onPress={cancelHandler}
-            pressableStyle={{ backgroundColor: colors.red900 }}
-            textStyle={{ color: colors.yellow500, fontWeight: "bold" }}
-          >
-            or CANCEL{" "}
-            <Fontisto name="smiley" size={20} color={colors.yellow500} />
-          </PrimaryButton>
         </View>
       </View>
       <View style={styles.userInputContainer}>
@@ -135,6 +131,7 @@ const GameScreen = (props) => {
           <View style={styles.inputWrapper}>
             <InputNumber
               containerStyle={{ backgroundColor: colors.blue500 }}
+              textStyle={{ fontSize: 23 }}
               enteredNumber={guessedNumber}
               onChangeNumber={changeNumberHandler}
             />
@@ -158,12 +155,21 @@ const GameScreen = (props) => {
             pressableStyle={{ backgroundColor: colors.blue500 }}
             containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
             textStyle={{
-              fontSize: 20,
+              fontSize: 17,
               fontWeight: "bold",
               color: colors.yellow500,
             }}
           >
             Check your guess
+          </PrimaryButton>
+          <PrimaryButton
+            onPress={cancelHandler}
+            pressableStyle={{ backgroundColor: colors.red900 }}
+            containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
+            textStyle={{ color: colors.yellow500, fontWeight: "bold" }}
+          >
+            CANCEL
+            <Fontisto name="smiley" size={20} color={colors.yellow500} />
           </PrimaryButton>
         </View>
       </View>
