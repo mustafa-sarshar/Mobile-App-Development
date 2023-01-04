@@ -23,8 +23,8 @@ const FinishScreen = (props) => {
       <View style={styles.feedbackContainer}>
         <Text style={styles.feedbackText}>
           You finally guessed{" "}
-          <Text style={styles.highlight}>{guesses[guesses.length - 1]}</Text> in{" "}
-          <Text style={styles.highlight}>{guesses.length}</Text>{" "}
+          <Text style={styles.highlight}>{guesses[0]} </Text> in
+          <Text style={styles.highlight}> {guesses.length} </Text>
           {guesses.length > 1 ? "tries" : "try"}.
         </Text>
       </View>
