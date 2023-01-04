@@ -8,17 +8,17 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 
-  winImageWrapper: {
-    padding: 16,
+  cancelImageWrapper: {
+    padding: 32,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: colors.yellow400,
+    borderColor: colors.red100,
     marginBottom: 16,
   },
 
-  imgWin: {
+  imgCancel: {
     justifyContent: "center",
     alignItems: "center",
   },
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 
   feedbackText: {
-    color: colors.yellow500,
+    color: colors.red100,
     fontFamily: "font-fugaz",
     fontSize: 25,
     backgroundColor: colors.blue500Transparent30,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
 
   highlight: {
-    color: "#FFFFFF",
+    color: colors.red500,
   },
 
   listGuessesWrapper: {

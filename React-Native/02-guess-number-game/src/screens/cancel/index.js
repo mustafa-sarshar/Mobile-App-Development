@@ -5,25 +5,21 @@ import PrimaryButton from "../../components/custom-buttons/primary-button";
 import { colors } from "../../utils";
 import styles from "./styles";
 
-const FinishScreen = (props) => {
-  const { onStartAgain, guesses } = props;
+const CancelScreen = (props) => {
+  const { onStartAgain, guesses, randomNum } = props;
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.winImageWrapper}>
+      <View style={styles.cancelImageWrapper}>
         <Image
-          style={styles.imgWin}
-          source={require("../../assets/img/win.png")}
-        />
-        <Image
-          style={styles.imgWin}
-          source={require("../../assets/img/winner_yellow.png")}
+          style={styles.imgCancel}
+          source={require("../../assets/img/crying.png")}
         />
       </View>
       <View style={styles.feedbackContainer}>
         <Text style={styles.feedbackText}>
-          You finally guessed{" "}
-          <Text style={styles.highlight}>{guesses[guesses.length - 1]}</Text> in{" "}
+          Unfortunately, you couldn't guess the number{" "}
+          <Text style={styles.highlight}>{randomNum}</Text> after{" "}
           <Text style={styles.highlight}>{guesses.length}</Text>{" "}
           {guesses.length > 1 ? "tries" : "try"}.
         </Text>
@@ -46,4 +42,4 @@ const FinishScreen = (props) => {
   );
 };
 
-export default FinishScreen;
+export default CancelScreen;

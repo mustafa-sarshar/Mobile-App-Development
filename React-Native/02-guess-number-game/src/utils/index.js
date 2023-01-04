@@ -33,11 +33,16 @@ const colors = {
   yellow400: "#e3c55f",
   yellow500: "#DDB52F",
   yellow400Transparent50: "#e3c55f50",
+  yellow400Transparent90: "#e3c55f90",
   orange500: "#b85600",
   orange500Transparent70: "#b8560070",
+  orange500Transparent90: "#b8560090",
   blue500: "#100c61",
+  blue500Transparent30: "#100c6130",
+  red100: "#ed8e87",
   red500: "#d10a0a",
   red500Transparent90: "#d10a0a90",
+  red900: "#750901",
 };
 
 export { useStateWithCallback, generateRandomNumber, colors };

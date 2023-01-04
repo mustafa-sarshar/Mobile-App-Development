@@ -1,17 +1,36 @@
-import React, { useState } from "react";
-import { View, Text, Alert, Image, TouchableOpacity } from "react-native";
+import React, { useState, useMemo } from "react";
+import {
+  View,
+  Text,
+  Alert,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { Fontisto } from "@expo/vector-icons";
 
 import InputNumber from "../../components/input-number";
 import PrimaryButton from "../../components/custom-buttons/primary-button";
-import { generateRandomNumber, useStateWithCallback } from "../../utils";
+import ListItem from "../../components/list-item";
+import {
+  generateRandomNumber,
+  useStateWithCallback,
+  colors,
+} from "../../utils";
 import styles from "./styles";
 
 const GameScreen = (props) => {
-  const { userLowerRange, userUpperRange, onGuessCorrect, randomNum } = props;
+  const { userLowerRange, userUpperRange, onGuessCorrect, onCancel } = props;
+  const [randomNum, setRandomNum] = useState();
   const [guessedNumber, setGuessedNumber] = useState("0");
   const [numbersGuessed, setNumbersGuessed] = useStateWithCallback([]);
   const [curLowerRange, setCurLowerRange] = useState(userLowerRange);
   const [curUpperRange, setCurUpperRange] = useState(userUpperRange);
+
+  useMemo(() => {
+    const num = generateRandomNumber(userLowerRange, userUpperRange);
+    setRandomNum(num);
+  }, []);
 
   const getAssistHandler = () => {
     const num = generateRandomNumber(
@@ -62,6 +81,7 @@ const GameScreen = (props) => {
         },
       ]);
     }
+    setGuessedNumber("0");
   };
 
   const checkNumberHandler = async () => {
@@ -73,7 +93,7 @@ const GameScreen = (props) => {
       );
     } else {
       setNumbersGuessed(
-        [...numbersGuessed, guessedNumber],
+        [guessedNumber, ...numbersGuessed],
         (prevValue, newValue) => {
           console.log("prevValue", prevValue);
           console.log("newValue", newValue);
@@ -87,36 +107,76 @@ const GameScreen = (props) => {
     }
   };
 
+  const cancelHandler = () => {
+    onCancel(randomNum, numbersGuessed);
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.lblTitle}>
-          Try to guess the random number between {userLowerRange} and{" "}
-          {userUpperRange} (answer: ${randomNum}).
-        </Text>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.lblTitle}>
+            Try to guess a number between{" "}
+            <Text style={styles.lblTitle__numbers}>{userLowerRange}</Text> and{" "}
+            <Text style={styles.lblTitle__numbers}>{userUpperRange}</Text>
+          </Text>
+          <PrimaryButton
+            onPress={cancelHandler}
+            pressableStyle={{ backgroundColor: colors.red900 }}
+            textStyle={{ color: colors.yellow500, fontWeight: "bold" }}
+          >
+            or CANCEL{" "}
+            <Fontisto name="smiley" size={20} color={colors.yellow500} />
+          </PrimaryButton>
+        </View>
       </View>
       <View style={styles.userInputContainer}>
-        <View style={styles.inputWrapper}>
-          <InputNumber
-            enteredNumber={guessedNumber}
-            onChangeNumber={changeNumberHandler}
-          />
+        <View style={styles.inputsWrapper}>
+          <View style={styles.inputWrapper}>
+            <InputNumber
+              containerStyle={{ backgroundColor: colors.blue500 }}
+              enteredNumber={guessedNumber}
+              onChangeNumber={changeNumberHandler}
+            />
+          </View>
+          <View style={styles.assistWrapper}>
+            <TouchableOpacity
+              style={styles.imgAssistContainer}
+              onPress={getAssistHandler}
+            >
+              <Image
+                style={styles.imgAssist}
+                source={require("../../assets/img/bot.png")}
+              />
+              <Text style={styles.lblAssist}>Get Help</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.btnWrapper}>
-          <PrimaryButton onPress={checkNumberHandler}>Check</PrimaryButton>
+          <PrimaryButton
+            onPress={checkNumberHandler}
+            pressableStyle={{ backgroundColor: colors.blue500 }}
+            containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
+            textStyle={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: colors.yellow500,
+            }}
+          >
+            Check your guess
+          </PrimaryButton>
         </View>
       </View>
-      <View style={styles.assistContainer}>
-        <TouchableOpacity
-          style={styles.imgContainer}
-          onPress={getAssistHandler}
-        >
-          <Image
-            style={styles.imgAssist}
-            source={require("../../assets/img/bot.png")}
-          />
-          <Text style={styles.lblAssist}>Get Help</Text>
-        </TouchableOpacity>
+
+      <View style={styles.lstGuessesContainer}>
+        <FlatList
+          data={numbersGuessed}
+          alwayBounceVertical={false}
+          keyExtractor={(item, idx) => idx}
+          renderItem={(itemData) => (
+            <ListItem itemData={itemData} lenGuesses={numbersGuessed.length} />
+          )}
+        />
       </View>
     </View>
   );

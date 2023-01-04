@@ -3,20 +3,26 @@ import { colors } from "../../utils";
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 2,
-    paddingVertical: 4,
-    borderRadius: 4,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    borderColor: "#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 16,
+    padding: 12,
+    marginVertical: 2,
     backgroundColor: colors.yellow400,
+    elevation: 4,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
   },
 
   itemText: {
-    flex: 1,
+    fontFamily: "font-alfa-slab",
     textAlign: "center",
-    color: "#000000",
-    fontWeight: "bold",
+    // color: "#FFFFFF",
   },
 });
 

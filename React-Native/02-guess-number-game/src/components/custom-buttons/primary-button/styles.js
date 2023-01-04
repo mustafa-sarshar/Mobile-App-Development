@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   btnOuterContainer: {
-    flex: 1,
     borderRadius: 8,
     margin: 4,
     overflow: "hidden",

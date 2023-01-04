@@ -35,7 +35,10 @@ const StartScreen = (props) => {
     const lowerRange = parseInt(enteredLowerRange);
     const upperRange = parseInt(enteredUpperRange);
 
-    if (!validateNumberEntered(lowerRange) || !validateNumberEntered(upperRange)) {
+    if (
+      !validateNumberEntered(lowerRange) ||
+      !validateNumberEntered(upperRange)
+    ) {
       Alert.alert(
         "Invalid numbers",
         "Entered value must be a number between 1 and 999,999,999",
@@ -72,8 +75,12 @@ const StartScreen = (props) => {
           />
         </View>
         <View style={styles.btnWrapper}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-          <PrimaryButton onPress={checkNumberHandler}>Confirm</PrimaryButton>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton onPress={checkNumberHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
       </View>
       <View style={styles.imgContainer}>

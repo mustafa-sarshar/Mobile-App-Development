@@ -30,20 +30,21 @@ const styles = StyleSheet.create({
   },
 
   lblTitle: {
+    fontFamily: "font-fugaz",
     color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center",
-  },
-
-  lblSeparator: {
-    color: "#FFFFFF",
-    fontSize: 50,
-    fontWeight: "bold",
+    fontSize: 25,
     textAlign: "center",
   },
 
   inputWrapper: {
     flexDirection: "row",
+  },
+  
+  lblSeparator: {
+    color: "#FFFFFF",
+    fontSize: 50,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 
   btnWrapper: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 8,
     borderRadius: 8,
-  }
+  },
 });
 
 export default styles;

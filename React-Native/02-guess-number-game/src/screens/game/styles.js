@@ -6,27 +6,33 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginTop: 50,
-    marginHorizontal: 24,
-    padding: 16,
+    padding: 8,
   },
 
   titleContainer: {
-    justifyContent: "flex-start",
+    flex: 1,
     alignItems: "center",
     marginBottom: 8,
+  },
+
+  titleWrapper: {
+    marginBottom: 8,
     padding: 18,
-    backgroundColor: colors.orange500Transparent70,
+    backgroundColor: colors.blue500,
     borderRadius: 8,
-    marginBottom: 16,
   },
 
   lblTitle: {
+    fontFamily: "font-fugaz",
     padding: 16,
-    color: colors.yellow500,
+    color: "#FFFFFF",
     fontSize: 20,
-    fontWeight: "bold",
     textAlign: "center",
     borderRadius: 8,
+  },
+
+  lblTitle__numbers: {
+    color: colors.yellow500,
   },
 
   userInputContainer: {
@@ -34,39 +40,35 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 8,
+    padding: 16,
+  },
+
+  inputsWrapper: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   inputWrapper: {
     flex: 1,
-    marginVertical: 8,
-    padding: 8,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: colors.yellow400,
+    borderColor: colors.yellow500,
     elevation: 4,
   },
 
-  btnWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  assistContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 8,
+  assistWrapper: {
     borderRadius: 8,
   },
 
-  imgContainer: {
+  imgAssistContainer: {
     justifyContent: "center",
     alignItems: "center",
-    margin: 8,
+    marginLeft: 8,
     padding: 18,
-    backgroundColor: colors.orange500,
     borderRadius: 8,
+    backgroundColor: colors.yellow400,
     elevation: 4,
   },
 
@@ -76,10 +78,18 @@ const styles = StyleSheet.create({
   },
 
   lblAssist: {
+    fontFamily: "font-alegreya",
     color: "#000000",
     fontSize: 20,
-    fontWeight: "bold",
     textAlign: "center",
+  },
+
+  btnWrapper: {
+    flex: 1,
+  },
+
+  lstGuessesContainer: {
+    flex: 1,
   },
 });
 
