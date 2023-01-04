@@ -7,13 +7,18 @@ import { generateRandomNumber, useStateWithCallback } from "../../utils";
 import styles from "./styles";
 
 const GameScreen = (props) => {
-  const { numFrom, numTo, onGuessCorrect, randomNum } = props;
+  const { userLowerRange, userUpperRange, onGuessCorrect, randomNum } = props;
   const [guessedNumber, setGuessedNumber] = useState("0");
-  // const [numbersGuessed, setNumbersGuessed] = useState([]);
   const [numbersGuessed, setNumbersGuessed] = useStateWithCallback([]);
+  const [curLowerRange, setCurLowerRange] = useState(userLowerRange);
+  const [curUpperRange, setCurUpperRange] = useState(userUpperRange);
 
   const getAssistHandler = () => {
-    const num = generateRandomNumber(numFrom, numTo + 1, numbersGuessed);
+    const num = generateRandomNumber(
+      curLowerRange,
+      curUpperRange + 1,
+      numbersGuessed
+    );
     setGuessedNumber(`${num}`);
   };
 
@@ -22,37 +27,60 @@ const GameScreen = (props) => {
   };
 
   const changeNumberHandler = (num) => {
-    setGuessedNumber(num);
+    setGuessedNumber(num.trim());
   };
 
-  const checkRange = (num) => {
-    if (num >= numFrom && num <= numTo) {
+  const validateRange = (num) => {
+    const numEntered = parseInt(num.trim());
+    if (numEntered >= userLowerRange && numEntered <= userUpperRange) {
       return true;
     } else {
       return false;
     }
   };
 
+  const updateRanges = () => {
+    const intGuessedNumber = parseInt(guessedNumber);
+    if (intGuessedNumber > randomNum) {
+      Alert.alert("Help", `Too High`, [
+        {
+          text: "OK",
+          style: "destructive",
+          onPress: () => {
+            setCurUpperRange(intGuessedNumber - 1);
+          },
+        },
+      ]);
+    } else {
+      Alert.alert("Help", `Too Low`, [
+        {
+          text: "OK",
+          style: "destructive",
+          onPress: () => {
+            setCurLowerRange(intGuessedNumber + 1);
+          },
+        },
+      ]);
+    }
+  };
+
   const checkNumberHandler = async () => {
-    if (!checkRange(guessedNumber)) {
+    if (!validateRange(guessedNumber)) {
       Alert.alert(
         "Invalid number",
-        `Entered value must be a number between ${numFrom} and ${numTo}`,
+        `Entered value must be a number between ${userLowerRange} and ${userUpperRange}`,
         [{ text: "OK", style: "destructive", onPress: resetInputHandler }]
       );
     } else {
       setNumbersGuessed(
         [...numbersGuessed, guessedNumber],
         (prevValue, newValue) => {
+          console.log("prevValue", prevValue);
           console.log("newValue", newValue);
-          if (guessedNumber !== randomNum) {
-            Alert.alert(
-              "Incorrect guess",
-              `You guessed ${guessedNumber}, which is not correct`,
-              [{ text: "OK", style: "cancel", onPress: resetInputHandler }]
-            );
+          if (parseInt(guessedNumber) !== randomNum) {
+            updateRanges();
           } else {
-            onGuessCorrect(numbersGuessed);
+            onGuessCorrect(newValue);
           }
         }
       );
@@ -63,8 +91,8 @@ const GameScreen = (props) => {
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
         <Text style={styles.lblTitle}>
-          Try to guess the random number between {numFrom} and {numTo} (answer:
-          ${randomNum}).
+          Try to guess the random number between {userLowerRange} and{" "}
+          {userUpperRange} (answer: ${randomNum}).
         </Text>
       </View>
       <View style={styles.userInputContainer}>

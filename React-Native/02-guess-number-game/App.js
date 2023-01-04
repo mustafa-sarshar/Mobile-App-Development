@@ -10,15 +10,15 @@ import { generateRandomNumber } from "./src/utils";
 import styles from "./styles";
 
 export default function App() {
-  const [numberConfirmedFrom, setNumberConfirmedFrom] = useState();
-  const [numberConfirmedTo, setNumberConfirmedTo] = useState();
+  const [lowerRangeConfirmed, setLowerRangeConfirmed] = useState();
+  const [upperRangeConfirmed, setUpperRangeConfirmed] = useState();
   const [randomNum, setRandomNum] = useState();
   const [guessedNumberCorrect, setGuessedNumberCorrect] = useState(false);
   const [numbersGuessed, setNumbersGuessed] = useState([]);
 
-  const confirmNumberHandler = (numFrom, numTo) => {
-    setNumberConfirmedFrom(numFrom);
-    setNumberConfirmedTo(numTo);
+  const confirmNumberHandler = (lowerRange, upperRange) => {
+    setLowerRangeConfirmed(lowerRange);
+    setUpperRangeConfirmed(upperRange);
   };
 
   const guessCorrectHandler = (numbersGuessed) => {
@@ -29,19 +29,19 @@ export default function App() {
   const startAgainHandler = () => {
     setGuessedNumberCorrect(false);
     setRandomNum();
-    setNumberConfirmedFrom();
-    setNumberConfirmedTo();
+    setLowerRangeConfirmed();
+    setUpperRangeConfirmed();
   };
 
   useEffect(() => {
-    if (numberConfirmedFrom && numberConfirmedTo && !randomNum) {
+    if (lowerRangeConfirmed && upperRangeConfirmed && !randomNum) {
       const num = generateRandomNumber(
-        parseInt(numberConfirmedFrom),
-        parseInt(numberConfirmedTo)
+        parseInt(lowerRangeConfirmed),
+        parseInt(upperRangeConfirmed)
       );
-      setRandomNum(`${num}`);
+      setRandomNum(num);
     }
-  }, [numberConfirmedFrom, numberConfirmedTo]);
+  }, [lowerRangeConfirmed, upperRangeConfirmed]);
 
   return (
     <View style={styles.container}>
@@ -56,12 +56,12 @@ export default function App() {
           imageStyle={{ opacity: 0.65 }}
         >
           <SafeAreaView style={styles.container}>
-            {!numberConfirmedFrom || !numberConfirmedTo || !randomNum ? (
+            {!lowerRangeConfirmed || !upperRangeConfirmed || !randomNum ? (
               <StartScreen onConfirmNumber={confirmNumberHandler} />
             ) : !guessedNumberCorrect || numbersGuessed.length < 1 ? (
               <GameScreen
-                numFrom={numberConfirmedFrom}
-                numTo={numberConfirmedTo}
+                userLowerRange={lowerRangeConfirmed}
+                userUpperRange={upperRangeConfirmed}
                 onGuessCorrect={guessCorrectHandler}
                 randomNum={randomNum}
               />

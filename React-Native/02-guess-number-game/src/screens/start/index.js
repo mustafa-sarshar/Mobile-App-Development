@@ -7,20 +7,20 @@ import styles from "./styles";
 
 const StartScreen = (props) => {
   const { onConfirmNumber } = props;
-  const [enteredNumberFrom, setEnteredNumberFrom] = useState("1");
-  const [enteredNumberTo, setEnteredNumberTo] = useState("100");
+  const [enteredLowerRange, setEnteredLowerRange] = useState("1");
+  const [enteredUpperRange, setEnteredUpperRange] = useState("100");
 
-  const changeNumberFromHandler = (num) => {
-    setEnteredNumberFrom(num.trim());
+  const changeLowerRangeHandler = (num) => {
+    setEnteredLowerRange(num.trim());
   };
 
-  const changeNumberToHandler = (num) => {
-    setEnteredNumberTo(num.trim());
+  const changeUpperRangeHandler = (num) => {
+    setEnteredUpperRange(num.trim());
   };
 
   const resetInputHandler = () => {
-    setEnteredNumberFrom("1");
-    setEnteredNumberTo("100");
+    setEnteredLowerRange("1");
+    setEnteredUpperRange("100");
   };
 
   const validateNumberEntered = (num) => {
@@ -32,23 +32,23 @@ const StartScreen = (props) => {
   };
 
   const checkNumberHandler = () => {
-    const numFrom = parseInt(enteredNumberFrom);
-    const numTo = parseInt(enteredNumberTo);
+    const lowerRange = parseInt(enteredLowerRange);
+    const upperRange = parseInt(enteredUpperRange);
 
-    if (!validateNumberEntered(numFrom) || !validateNumberEntered(numTo)) {
+    if (!validateNumberEntered(lowerRange) || !validateNumberEntered(upperRange)) {
       Alert.alert(
         "Invalid numbers",
         "Entered value must be a number between 1 and 999,999,999",
         [{ text: "OK", style: "destructive", onPress: resetInputHandler }]
       );
-    } else if (numTo <= numFrom) {
+    } else if (upperRange <= lowerRange) {
       Alert.alert(
         "Invalid numbers",
-        "The left number 'from' must be less than the right number 'to'.",
+        "The left number 'lower range' must be less than the right number 'upper range'.",
         [{ text: "OK", style: "destructive", onPress: resetInputHandler }]
       );
     } else {
-      onConfirmNumber(numFrom, numTo);
+      onConfirmNumber(lowerRange, upperRange);
     }
   };
 
@@ -60,15 +60,15 @@ const StartScreen = (props) => {
         </View>
         <View style={styles.inputWrapper}>
           <InputNumber
-            enteredNumber={enteredNumberFrom}
-            onChangeNumber={changeNumberFromHandler}
+            enteredNumber={enteredLowerRange}
+            onChangeNumber={changeLowerRangeHandler}
           />
           <View style={styles.lblContainer}>
             <Text style={styles.lblSeparator}>-</Text>
           </View>
           <InputNumber
-            enteredNumber={enteredNumberTo}
-            onChangeNumber={changeNumberToHandler}
+            enteredNumber={enteredUpperRange}
+            onChangeNumber={changeUpperRangeHandler}
           />
         </View>
         <View style={styles.btnWrapper}>
