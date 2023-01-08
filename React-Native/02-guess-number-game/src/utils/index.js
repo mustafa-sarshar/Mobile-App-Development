@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Dimensions } from "react-native";
 
 // Source: https://betterprogramming.pub/synchronous-state-in-react-using-hooks-dc77f43d8521
 // accessed on 2023-01-04
@@ -28,8 +29,8 @@ const generateRandomNumber = (min, max, numsToExclude = []) => {
   }
 };
 
-// Global colors used for styling
-const colors = {
+// Global COLORS used for styling
+const COLORS = {
   yellow400: "#e3c55f",
   yellow500: "#DDB52F",
   yellow400Transparent50: "#e3c55f50",
@@ -43,6 +44,12 @@ const colors = {
   red500: "#d10a0a",
   red500Transparent90: "#d10a0a90",
   red900: "#750901",
+  green900: "#225e07",
 };
 
-export { useStateWithCallback, generateRandomNumber, colors };
+const APP_DIMENSIONS = {
+  winWidth: Dimensions.get("window").width,
+  winHeight: Dimensions.get("window").height,
+};
+
+export { useStateWithCallback, generateRandomNumber, COLORS, APP_DIMENSIONS };

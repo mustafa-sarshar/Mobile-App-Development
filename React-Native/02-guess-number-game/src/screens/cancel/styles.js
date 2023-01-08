@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: colors.red100,
+    borderColor: COLORS.red100,
     marginBottom: 16,
   },
 
@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
   },
 
   feedbackText: {
-    color: colors.red100,
+    color: COLORS.red100,
     fontFamily: "font-fugaz",
     fontSize: 25,
-    backgroundColor: colors.blue500Transparent30,
+    backgroundColor: COLORS.blue500Transparent30,
     textAlign: "center",
   },
 
   highlight: {
-    color: colors.red500,
+    color: COLORS.red500,
   },
 
   listGuessesWrapper: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderBottomWidth: 2,
     borderBottomColor: "#FFFFFF",
-    backgroundColor: colors.blue500,
+    backgroundColor: COLORS.blue500,
   },
 
   btnWrapper: {

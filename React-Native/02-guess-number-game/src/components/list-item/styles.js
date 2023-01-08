@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 12,
     marginVertical: 2,
-    backgroundColor: colors.yellow400,
+    backgroundColor: COLORS.yellow400,
     elevation: 4,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 1 },

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: colors.yellow400,
+    borderColor: COLORS.yellow400,
     marginBottom: 16,
   },
 
@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   },
 
   feedbackText: {
-    color: colors.yellow500,
+    color: COLORS.yellow500,
     fontFamily: "font-fugaz",
     fontSize: 25,
-    backgroundColor: colors.blue500Transparent30,
+    backgroundColor: COLORS.blue500Transparent30,
     textAlign: "center",
   },
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderBottomWidth: 2,
     borderBottomColor: "#FFFFFF",
-    backgroundColor: colors.blue500,
+    backgroundColor: COLORS.blue500,
   },
 
   btnWrapper: {

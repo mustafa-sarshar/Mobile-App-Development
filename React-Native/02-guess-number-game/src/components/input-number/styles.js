@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     width: 120,
     textAlign: "center",
     fontSize: 20,
-    color: colors.yellow500,
-    borderBottomColor: colors.yellow500,
+    color: COLORS.yellow500,
+    borderBottomColor: COLORS.yellow500,
     borderBottomWidth: 2,
     marginVertical: 8,
     fontWeight: "bold",

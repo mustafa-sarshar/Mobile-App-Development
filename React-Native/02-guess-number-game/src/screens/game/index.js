@@ -15,7 +15,7 @@ import ListItem from "../../components/list-item";
 import {
   generateRandomNumber,
   useStateWithCallback,
-  colors,
+  COLORS,
 } from "../../utils";
 import styles from "./styles";
 
@@ -24,8 +24,10 @@ const GameScreen = (props) => {
   const [randomNum, setRandomNum] = useState();
   const [guessedNumber, setGuessedNumber] = useState("0");
   const [numbersGuessed, setNumbersGuessed] = useStateWithCallback([]);
-  const [curLowerRange, setCurLowerRange] = useState(userLowerRange);
-  const [curUpperRange, setCurUpperRange] = useState(userUpperRange);
+  const [curLowerRange, setCurLowerRange] =
+    useStateWithCallback(userLowerRange);
+  const [curUpperRange, setCurUpperRange] =
+    useStateWithCallback(userUpperRange);
 
   useMemo(() => {
     const num = generateRandomNumber(userLowerRange, userUpperRange);
@@ -53,7 +55,7 @@ const GameScreen = (props) => {
     }
   };
 
-  const validateRange = (num) => {
+  const validateRangeHandler = (num) => {
     const numEntered = parseInt(num.trim());
     if (numEntered >= userLowerRange && numEntered <= userUpperRange) {
       return true;
@@ -64,13 +66,23 @@ const GameScreen = (props) => {
 
   const updateRanges = () => {
     const intGuessedNumber = parseInt(guessedNumber);
-    if (intGuessedNumber > randomNum) {
+    if (intGuessedNumber === randomNum) {
+      updateNumbersGuessedHandler("equal");
+    } else if (intGuessedNumber > randomNum) {
       Alert.alert("Help", `Too High`, [
         {
           text: "OK",
           style: "destructive",
           onPress: () => {
-            setCurUpperRange(intGuessedNumber - 1);
+            setCurUpperRange(intGuessedNumber - 1, (prevValue, newValue) => {
+              console.log(
+                "prevUpperRange",
+                prevValue,
+                "newUpperRange",
+                newValue
+              );
+              updateNumbersGuessedHandler("high");
+            });
           },
         },
       ]);
@@ -80,7 +92,15 @@ const GameScreen = (props) => {
           text: "OK",
           style: "destructive",
           onPress: () => {
-            setCurLowerRange(intGuessedNumber + 1);
+            setCurLowerRange(intGuessedNumber + 1, (prevValue, newValue) => {
+              console.log(
+                "prevLowerRange",
+                prevValue,
+                "newLowerRange",
+                newValue
+              );
+              updateNumbersGuessedHandler("low");
+            });
           },
         },
       ]);
@@ -88,26 +108,28 @@ const GameScreen = (props) => {
     setGuessedNumber("0");
   };
 
+  const updateNumbersGuessedHandler = (itemType) => {
+    setNumbersGuessed(
+      [{ itemValue: guessedNumber, itemType: itemType }, ...numbersGuessed],
+      (prevValue, newValue) => {
+        console.log("prevGuessedNumber", prevValue);
+        console.log("newGuessedNumber", newValue);
+        if (parseInt(guessedNumber) === randomNum) {
+          onGuessCorrect(newValue);
+        }
+      }
+    );
+  };
+
   const checkNumberHandler = async () => {
-    if (!validateRange(guessedNumber)) {
+    if (!validateRangeHandler(guessedNumber)) {
       Alert.alert(
         "Invalid number",
         `Entered value must be a number between ${userLowerRange} and ${userUpperRange}`,
         [{ text: "OK", style: "destructive", onPress: resetInputHandler }]
       );
     } else {
-      setNumbersGuessed(
-        [guessedNumber, ...numbersGuessed],
-        (prevValue, newValue) => {
-          console.log("prevValue", prevValue);
-          console.log("newValue", newValue);
-          if (parseInt(guessedNumber) !== randomNum) {
-            updateRanges();
-          } else {
-            onGuessCorrect(newValue);
-          }
-        }
-      );
+      updateRanges();
     }
   };
 
@@ -130,7 +152,7 @@ const GameScreen = (props) => {
         <View style={styles.inputsWrapper}>
           <View style={styles.inputWrapper}>
             <InputNumber
-              containerStyle={{ backgroundColor: colors.blue500 }}
+              containerStyle={{ backgroundColor: COLORS.blue500 }}
               textStyle={{ fontSize: 23 }}
               enteredNumber={guessedNumber}
               onChangeNumber={changeNumberHandler}
@@ -152,28 +174,27 @@ const GameScreen = (props) => {
         <View style={styles.btnWrapper}>
           <PrimaryButton
             onPress={checkNumberHandler}
-            pressableStyle={{ backgroundColor: colors.blue500 }}
-            containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
+            pressableStyle={{ backgroundColor: COLORS.blue500 }}
+            containerStyle={{ borderWidth: 1, borderColor: COLORS.yellow400 }}
             textStyle={{
               fontSize: 17,
               fontWeight: "bold",
-              color: colors.yellow500,
+              color: COLORS.yellow500,
             }}
           >
             Check your guess
           </PrimaryButton>
           <PrimaryButton
             onPress={cancelHandler}
-            pressableStyle={{ backgroundColor: colors.red900 }}
-            containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
-            textStyle={{ color: colors.yellow500, fontWeight: "bold" }}
+            pressableStyle={{ backgroundColor: COLORS.red900 }}
+            containerStyle={{ borderWidth: 1, borderColor: COLORS.yellow400 }}
+            textStyle={{ color: COLORS.yellow500, fontWeight: "bold" }}
           >
             CANCEL
-            <Fontisto name="smiley" size={20} color={colors.yellow500} />
+            <Fontisto name="smiley" size={20} color={COLORS.yellow500} />
           </PrimaryButton>
         </View>
       </View>
-
       <View style={styles.lstGuessesContainer}>
         <FlatList
           data={numbersGuessed}

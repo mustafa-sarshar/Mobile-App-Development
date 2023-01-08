@@ -1,5 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { View, ImageBackground, SafeAreaView } from "react-native";
+import {
+  View,
+  ImageBackground,
+  SafeAreaView,
+  useWindowDimensions,
+  StatusBar
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -10,6 +16,8 @@ import FinishScreen from "./src/screens/finish";
 
 import styles from "./styles";
 import CancelScreen from "./src/screens/cancel";
+
+import { APP_DIMENSIONS } from "./src/utils";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -33,6 +41,14 @@ export default function App() {
       console.log("App is ready");
     }
   }, [fontsLoaded, fontsError]);
+
+  const {
+    width: winWidth,
+    height: winHeight,
+    scale: winPixelRatio,
+    fontScale: winFontScale,
+  } = useWindowDimensions();
+  console.log(winWidth, winHeight, winPixelRatio, winFontScale);
 
   // Control the SplashScreen behavior based on loading status of the required assets
   const onLayoutRootView = useCallback(async () => {
@@ -76,6 +92,7 @@ export default function App() {
 
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
+      <StatusBar style="light" />
       <LinearGradient
         style={styles.container}
         colors={["#DDB52F", "#2657a6", "#031838"]}

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: colors.blue500,
+    backgroundColor: COLORS.blue500,
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",

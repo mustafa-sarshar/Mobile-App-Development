@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   titleWrapper: {
     marginBottom: 8,
     padding: 18,
-    backgroundColor: colors.blue500,
+    backgroundColor: COLORS.blue500,
     borderRadius: 8,
   },
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 
   lblTitle__numbers: {
-    color: colors.yellow500,
+    color: COLORS.yellow500,
   },
 
   userInputContainer: {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: colors.yellow500,
+    borderColor: COLORS.yellow500,
     elevation: 4,
   },
 
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     padding: 18,
     borderRadius: 8,
-    backgroundColor: colors.yellow400,
+    backgroundColor: COLORS.yellow400,
     elevation: 4,
   },
 

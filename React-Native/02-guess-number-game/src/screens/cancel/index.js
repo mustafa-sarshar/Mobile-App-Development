@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 
 import PrimaryButton from "../../components/custom-buttons/primary-button";
-import { colors } from "../../utils";
+import { COLORS } from "../../utils";
 import styles from "./styles";
 
 const CancelScreen = (props) => {
@@ -27,12 +27,12 @@ const CancelScreen = (props) => {
       <View style={styles.btnWrapper}>
         <PrimaryButton
           onPress={onStartAgain}
-          pressableStyle={{ backgroundColor: colors.blue500 }}
-          containerStyle={{ borderWidth: 1, borderColor: colors.yellow400 }}
+          pressableStyle={{ backgroundColor: COLORS.blue500 }}
+          containerStyle={{ borderWidth: 1, borderColor: COLORS.yellow400 }}
           textStyle={{
             fontSize: 20,
             fontWeight: "bold",
-            color: colors.yellow500,
+            color: COLORS.yellow500,
           }}
         >
           Start Again

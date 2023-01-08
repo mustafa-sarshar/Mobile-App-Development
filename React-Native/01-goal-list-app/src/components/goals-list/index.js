@@ -1,13 +1,8 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
-
+import { View, FlatList } from "react-native";
 import GoalItem from "../goal-item";
 
-const styles = StyleSheet.create({
-  goalsContainer: {
-    flex: 6,
-  },
-});
+import styles from "./styles";
 
 const GoalsList = (props) => {
   const { goals, onDeleteGoal } = props;
