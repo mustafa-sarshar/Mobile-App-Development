@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">using-angular</string>
+    <string name="title_activity_main">using-angular</string>
+    <string name="package_name">io.musto.mobile.app</string>
+    <string name="custom_url_scheme">io.musto.mobile.app</string>
+</resources>
