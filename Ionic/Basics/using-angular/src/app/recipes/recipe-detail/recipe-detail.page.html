@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="/recipes"></ion-back-button>
+      <ion-back-button defaultHref="/recipes"></ion-back-button>
     </ion-buttons>
     <ion-title>Recipe Detail</ion-title>
     <ion-buttons slot="primary">
@@ -11,8 +11,8 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true" *ngIf="recipeData">
+@if (recipeData) {
+<ion-content [fullscreen]="true">
   <ion-grid class="ion-no-padding">
     <ion-row>
       <ion-col class="ion-no-padding" size-md="6" offset-md="3">
@@ -26,10 +26,11 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-no-padding" size-md="6" offset-md="3">
-        <ion-item *ngFor="let ingredient of recipeData.ingredients">
-          {{ ingredient }}
-        </ion-item>
+        @for (ingredient of recipeData.ingredients; track $index) {
+        <ion-item> {{ ingredient }} </ion-item>
+        }
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+}

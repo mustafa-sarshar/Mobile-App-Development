@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,15 +6,15 @@
     <title>Budget Planner</title>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.esm.js"
     ></script>
     <script
       nomodule
-      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"
     ></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core@latest/css/ionic.bundle.css"
     />
   </head>
   <body>
@@ -34,12 +34,23 @@
                 </ion-card-header>
                 <ion-card-content>
                   <ion-item>
-                    <ion-label position="floating"> Expense Reason </ion-label>
-                    <ion-input type="text" id="in-reason"> </ion-input>
+                    <!-- <ion-label position="floating"> Expense Reason </ion-label> -->
+                    <ion-input
+                      label="Expense Reason"
+                      position="floating"
+                      type="text"
+                      id="in-reason"
+                    >
+                    </ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating"> Expense Amount </ion-label>
-                    <ion-input type="number" id="in-amount"> </ion-input>
+                    <!-- <ion-label position="floating"> Expense Amount </ion-label> -->
+                    <ion-input
+                      label="Expense Amount"
+                      type="number"
+                      id="in-amount"
+                    >
+                    </ion-input>
                   </ion-item>
                   <div class="ion-margin-vertical ion-text-right">
                     <ion-button fill="outline" color="danger" id="btn-clear">

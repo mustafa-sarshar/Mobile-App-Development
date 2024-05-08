@@ -11,6 +11,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <app-recipe-item *ngFor="let recipe of recipes" [recipeData]="recipe" />
+    @for (recipe of recipes; track $index) {
+    <app-recipe-item [recipeData]="recipe" />
+    }
   </ion-list>
 </ion-content>

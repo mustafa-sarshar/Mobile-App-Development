@@ -1,0 +1,22 @@
+@if (placeData) {
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="onClickClose()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title> {{ placeData.title }} </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="ion-padding">
+      <h2>Book {{ placeData.title }}</h2>
+      <ion-label> for only {{ placeData.price | currency: "€" }} </ion-label>
+    </div>
+    <div class="ion-text-right ion-padding">
+      <ion-button color="primary" (click)="onClickBook()">Submit Booking</ion-button>
+    </div>
+  </ion-content>
+}

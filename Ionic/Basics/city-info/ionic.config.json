@@ -1,7 +1,0 @@
-{
-  "name": "city-info",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

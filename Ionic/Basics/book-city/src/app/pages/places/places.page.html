@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="mainMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Places</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Places</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/', 'places', 'discover']">
+        <ion-icon aria-hidden="true" name="search"></ion-icon>
+        <ion-label>Discover</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/', 'places', 'offers']">
+        <ion-icon aria-hidden="true" name="card"></ion-icon>
+        <ion-label>Offers</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

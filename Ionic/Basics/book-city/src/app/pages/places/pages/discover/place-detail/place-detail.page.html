@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="['/', 'places', 'discover']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Place Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if (place) {
+  <ion-img [src]="place.imgUrl"></ion-img>
+  <div class="ion-padding">
+    <h2>{{place.title}}</h2>
+    <ion-card-subtitle> {{place.price | currency:"€"}} </ion-card-subtitle>
+    <p>
+      <ion-text> {{place.desc}} </ion-text>
+    </p>
+  </div>
+  <div class="ion-text-right ion-padding">
+    <ion-button color="primary" (click)="onClickBook()">Book</ion-button>
+  </div>
+  }
+</ion-content>

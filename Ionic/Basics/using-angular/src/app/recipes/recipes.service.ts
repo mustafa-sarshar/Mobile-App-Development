@@ -17,7 +17,7 @@ export class RecipesService {
       title: "Spaghetti",
       imageUrl:
         "https://media.istockphoto.com/id/1144823591/fr/photo/spaghetti-dans-un-plat-sur-un-fond-blanc.jpg?s=612x612&w=0&k=20&c=qFzd8iE185mpsX7hWqYaieOWlzJVCkzFdYsxmwUT3-Q=",
-      ingredients: ["Spaghetti", "Meat", "Tomatores"],
+      ingredients: ["Spaghetti", "Meat", "Tomatoes"],
     },
   ]);
 
