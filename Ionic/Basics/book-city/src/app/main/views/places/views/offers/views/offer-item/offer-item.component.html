@@ -1,0 +1,17 @@
+@if (offerData) {
+  <ion-item detail>
+    <ion-thumbnail slot="start">
+      <ion-img [alt]="offerData.place.title" [src]="offerData.place.imgUrl"></ion-img>
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ offerData.place.title }}</h2>
+      <p>{{ offerData.place.desc }}</p>
+      <small class="offer__dates">
+        <ion-icon name="calendar"></ion-icon>
+        {{ offerData.dateFrom | date }}
+        <ion-icon name="arrow-forward"></ion-icon>
+        {{ offerData.dateTo | date }}
+      </small>
+    </ion-label>
+  </ion-item>
+}

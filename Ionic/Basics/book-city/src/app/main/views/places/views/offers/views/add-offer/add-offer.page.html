@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="['/', 'places', 'offers']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Offer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">add-offer</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  @if (formGroupEl) {
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3" sizeSm="8" offsetSm="2">
+        <form [formGroup]="formGroupEl">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-select label="Place" placeholder="select place" formControlName="place">
+                @if (places) { @for (place of places; track $index) {
+                <ion-select-option [value]="place"> {{place.title}} </ion-select-option>
+                } }
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                @if (formGroupEl && formGroupEl.value["place"]) { Price:
+                {{formGroupEl.value["place"].price | currency:"€"}} } @else { Price: N/A }
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Available from</ion-label>
+              <ion-datetime-button datetime="date-from"></ion-datetime-button>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime
+                    id="date-from"
+                    formControlName="dateFrom"
+                    presentation="date"
+                    [value]="dateNow.toISOString()"
+                    [min]="dateNow.toISOString()"
+                    [firstDayOfWeek]="1"
+                    [showDefaultTitle]="true"
+                    [showDefaultButtons]="true"
+                    (ionChange)="onChangeDateFrom($event)"
+                  >
+                    <span slot="title">Available from</span>
+                  </ion-datetime>
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+            <ion-item [disabled]="!dateFrom">
+              <ion-label>Available till</ion-label>
+              @if(dateFrom) {
+              <ion-datetime-button datetime="date-till"></ion-datetime-button>
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime
+                    id="date-till"
+                    formControlName="dateTill"
+                    presentation="date"
+                    [min]="dateFrom.toISOString()"
+                    [value]="dateFrom.toISOString()"
+                    [firstDayOfWeek]="1"
+                    [showDefaultTitle]="true"
+                    [showDefaultButtons]="true"
+                  >
+                    <span slot="title">Available till</span>
+                  </ion-datetime>
+                </ng-template>
+              </ion-modal>
+              }
+            </ion-item>
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3" sizeSm="8" offsetSm="2">
+        <div class="ion-text-right ion-padding">
+          <ion-button
+            color="primary"
+            (click)="onClickSubmit() "
+            [disabled]="formGroupEl.status !== 'VALID'"
+          >
+            Add
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  }
+</ion-content>

@@ -1,0 +1,11 @@
+ion-item-option {
+  background-color: transparent;
+}
+
+.offer {
+  &__dates {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}

@@ -35,3 +35,10 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-datetime {
+  --background: var(--background);
+  --background-rgb: var(--background-rgb);
+
+  border-radius: 0.375;
+}

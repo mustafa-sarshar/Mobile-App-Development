@@ -1,23 +1,23 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
-import { authGuard } from "./pages/auth/auth.guard";
+import { authGuard } from "./main/views/auth/auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "/auth", pathMatch: "full" },
   {
     path: "auth",
-    loadChildren: () => import("./pages/auth/auth.module").then((m) => m.AuthPageModule),
+    loadChildren: () => import("./main/views/auth/auth.module").then((m) => m.AuthPageModule),
   },
   {
     path: "places",
-    loadChildren: () => import("./pages/places/places.module").then((m) => m.PlacesPageModule),
+    loadChildren: () => import("./main/views/places/places.module").then((m) => m.PlacesPageModule),
     canActivate: [authGuard],
   },
   {
     path: "bookings",
     loadChildren: () =>
-      import("./pages/bookings/bookings.module").then((m) => m.BookingsPageModule),
+      import("./main/views/bookings/bookings.module").then((m) => m.BookingsPageModule),
     canActivate: [authGuard],
   },
   {

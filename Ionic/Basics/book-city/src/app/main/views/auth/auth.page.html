@@ -1,0 +1,125 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{pageMode==="LOGIN" ? 'Login' : 'Register'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-margin" [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">auth</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  @if (formGroupEl) {
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3" sizeSm="8" offsetSm="2">
+        <form [formGroup]="formGroupEl">
+          <ion-list lines="none">
+            @switch (pageMode) { @case ("LOGIN") {
+            <ion-item>
+              <ion-input
+                type="email"
+                label="Email*"
+                labelPlacement="floating"
+                placeholder="your email"
+                formControlName="email"
+                errorText="Invalid email"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                type="password"
+                label="Password*"
+                labelPlacement="floating"
+                placeholder="your password"
+                formControlName="password"
+                errorText="Invalid password"
+                #password
+              >
+                @if (password && password.value && password.value.toString() &&
+                password.value.toString().length>0) {
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                }
+              </ion-input>
+            </ion-item>
+            } @case ("REGISTER") {
+            <ion-item>
+              <ion-input
+                type="text"
+                label="Username*"
+                labelPlacement="floating"
+                placeholder="your username"
+                formControlName="username"
+                errorText="Invalid username"
+                autocomplete
+                autocorrect
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                type="email"
+                label="Email*"
+                labelPlacement="floating"
+                placeholder="your email"
+                formControlName="email"
+                errorText="Invalid email"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                type="password"
+                label="Password*"
+                labelPlacement="floating"
+                placeholder="your password"
+                formControlName="password"
+                errorText="Invalid password"
+                #password
+              >
+                @if (password && password.value && password.value.toString() &&
+                password.value.toString().length>0) {
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                }
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                type="password"
+                label="Password (Confirm)*"
+                labelPlacement="floating"
+                placeholder="your password again"
+                formControlName="passwordConfirm"
+                errorText="Invalid password"
+                #passwordConfirm
+              >
+                @if (passwordConfirm && passwordConfirm.value && passwordConfirm.value.toString() &&
+                passwordConfirm.value.toString().length>0) {
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                }
+              </ion-input>
+            </ion-item>
+            } @default {} }
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col sizeMd="6" offsetMd="3" sizeSm="8" offsetSm="2">
+        <ion-button color="secondary" size="block" fill="clear" (click)="onClickToggleMode()">
+          {{pageMode==="LOGIN" ? 'New to platform?' : 'Have already an account!'}}
+        </ion-button>
+        <div class="ion-text-right ion-padding">
+          <ion-button color="primary" (click)="onClickSubmit() ">
+            {{pageMode==="LOGIN" ? 'Login' : 'Register'}}
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  }
+</ion-content>
+
+<!-- [disabled]="formGroupEl.status !== 'VALID'" -->
